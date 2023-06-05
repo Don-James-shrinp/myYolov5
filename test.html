@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload and Display Image</title>
+</head>
+<body>
+    <h1>Upload and Display Image</h1>
+    <form method="POST" enctype="multipart/form-data" action="http://127.0.0.1:5000/upload">
+        <input type="file" name="file">
+        <input type="submit" value="Upload">
+    </form>
+    <h2>Uploaded Image:</h2>
+    <img id="uploaded-image" src="" alt="Uploaded Image">
+    
+    <script>
+        // 选择文件并显示图片
+        function handleFileSelect(event) {
+            const file = event.target.files[0];
+            const reader = new FileReader();
+            
+            reader.onload = function(e) {
+                document.getElementById('uploaded-image').src = e.target.result;
+            };
+            
+            reader.readAsDataURL(file);
+        }
+        
+        // 监听文件选择事件
+        const fileInput = document.querySelector('input[type="file"]');
+        fileInput.addEventListener('change', handleFileSelect);
+    </script>
+</body>
+</html>

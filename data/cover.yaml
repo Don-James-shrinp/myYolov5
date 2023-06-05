@@ -1,0 +1,5 @@
+train: ../井盖数据集/images/train
+val: ../井盖数据集/images/val
+
+nc: 3
+names: ['missing','normal','broken']
