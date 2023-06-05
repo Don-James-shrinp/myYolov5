@@ -36,7 +36,7 @@ def _create(name, pretrained=True, channels=3, classes=80, autoshape=True, verbo
     from utils.downloads import attempt_download
     from utils.general import LOGGER, check_requirements, intersect_dicts, logging
     from utils.torch_utils import select_device
-
+    
     if not verbose:
         LOGGER.setLevel(logging.WARNING)
     check_requirements(exclude=('opencv-python', 'tensorboard', 'thop'))
@@ -131,6 +131,13 @@ def yolov5l6(pretrained=True, channels=3, classes=80, autoshape=True, _verbose=T
 def yolov5x6(pretrained=True, channels=3, classes=80, autoshape=True, _verbose=True, device=None):
     # YOLOv5-xlarge-P6 model https://github.com/ultralytics/yolov5
     return _create('yolov5x6', pretrained, channels, classes, autoshape, _verbose, device)
+
+def cover(pretrained=True, channels=3, classes=80, autoshape=True, _verbose=True, device=None):
+    # Define your model architecture and initialization
+    from pathlib import Path
+    FILE = Path(__file__).resolve()
+    ROOT = FILE.parents[0]  # YOLOv5 root directory
+    return _create(ROOT / 'runs/train/exp5/weights/best.pt', autoshape=autoshape, verbose=_verbose, device=device)
 
 
 if __name__ == '__main__':
